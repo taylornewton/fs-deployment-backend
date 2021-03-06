@@ -43,7 +43,8 @@ export const deleteReview: RequestHandler = async (req, res, next) => {
             res.status(400);
         }
         else {
-            res.status(200);
+            console.log('success');
+            res.status(200).json();
         }
     });
 }

@@ -110,7 +110,8 @@ var deleteReview = function (req, res, next) { return __awaiter(void 0, void 0, 
                         res.status(400);
                     }
                     else {
-                        res.status(200);
+                        console.log('success');
+                        res.status(200).json();
                     }
                 })];
             case 1:
