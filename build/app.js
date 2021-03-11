@@ -6,9 +6,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var morgan_1 = __importDefault(require("morgan"));
 var mongoose_1 = __importDefault(require("mongoose"));
+var dotenv = require("dotenv");
 var reviewRoutes_1 = __importDefault(require("./routes/reviewRoutes"));
 var app = express_1.default();
-var connectionString = '';
+dotenv.config();
+var connectionString = process.env.MONGO_URL;
+if (!connectionString) {
+    console.log('Missing required environment variable in .env: MONGO_URL');
+    process.exit(1);
+}
 mongoose_1.default.connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

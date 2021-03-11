@@ -1,10 +1,17 @@
 import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
-import mongoose, { connections } from 'mongoose';
+import mongoose from 'mongoose';
+import dotenv = require('dotenv');
 import reviewRoutes from './routes/reviewRoutes';
 
 const app = express();
-const connectionString = '';
+dotenv.config();
+const connectionString = process.env.MONGO_URL;
+
+if (!connectionString) {
+    console.log('Missing required environment variable in .env: MONGO_URL');
+    process.exit(1);
+}
 
 mongoose.connect(connectionString, {
     useNewUrlParser: true,
