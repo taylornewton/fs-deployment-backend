@@ -5,6 +5,8 @@ import dotenv = require('dotenv');
 import reviewRoutes from './routes/reviewRoutes';
 
 const app = express();
+const cors = require('cors');
+
 dotenv.config();
 const connectionString = process.env.MONGO_URL;
 
@@ -23,6 +25,8 @@ mongoose.connect(connectionString, {
 
 // logging middleware
 app.use(morgan('dev'));
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

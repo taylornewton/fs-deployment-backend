@@ -9,6 +9,7 @@ var mongoose_1 = __importDefault(require("mongoose"));
 var dotenv = require("dotenv");
 var reviewRoutes_1 = __importDefault(require("./routes/reviewRoutes"));
 var app = express_1.default();
+var cors = require('cors');
 dotenv.config();
 var connectionString = process.env.MONGO_URL;
 if (!connectionString) {
@@ -24,6 +25,7 @@ mongoose_1.default.connect(connectionString, {
 });
 // logging middleware
 app.use(morgan_1.default('dev'));
+app.use(cors());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 // Add routing middleware here
