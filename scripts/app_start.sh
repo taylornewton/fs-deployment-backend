@@ -1,5 +1,5 @@
 cd /home/ubuntu/api
 
-npm run build
+sudo npm run build
 
-npm run start
+sudo npm run start
