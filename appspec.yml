@@ -1,0 +1,34 @@
+version: 0.0
+os: linux 
+
+# During the Install deployment lifecycle event (which occurs between the 
+#   BeforeInstall and AfterInstall events), copy the specified files 
+#   in "source" starting from the root of the revision's file bundle 
+#   to "destination" on the Amazon EC2 instance.
+
+files:
+  - source: /
+    destination: /home/ubuntu/api
+
+
+hooks:
+  # ApplicationStop:
+  #   - location: 
+  #     timeout:
+  #     runas:
+
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 180
+      runas: ubuntu
+
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 180
+      runas: ubuntu
+
+  ApplicationStart:
+    - location: app_start.sh
+      timeout: 180
+      runas: ubuntu
+      

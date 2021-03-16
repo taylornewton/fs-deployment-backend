@@ -30,6 +30,10 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 // Add routing middleware here
 app.use('/reviews', reviewRoutes_1.default);
+// healthcheck
+app.use('/', function (req, res) {
+    res.status(200).json({ response: 'The app is running!', status: 200 });
+});
 // Route Not Found
 app.use(function (req, res, next) {
     res.status(404).json({
@@ -37,4 +41,4 @@ app.use(function (req, res, next) {
         status: 404
     });
 });
-app.listen(3000);
+app.listen(3000, function () { return console.log('Server running on port 3000!'); });

@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express';
+import express, { NextFunction, Request, response, Response } from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import dotenv = require('dotenv');
@@ -34,6 +34,11 @@ app.use(express.urlencoded({extended: true}));
 // Add routing middleware here
 app.use('/reviews', reviewRoutes);
 
+// healthcheck
+app.use('/', (req, res) => {
+    res.status(200).json({ response: 'The app is running!', status: 200 });
+});
+
  // Route Not Found
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.status(404).json({
@@ -42,4 +47,4 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     })
 })
 
-app.listen(3000);
+app.listen(3000, () => console.log('Server running on port 3000!'));
