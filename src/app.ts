@@ -8,12 +8,7 @@ const app = express();
 const cors = require('cors');
 
 dotenv.config();
-const connectionString = process.env.MONGO_URL;
-
-if (!connectionString) {
-    console.log('Missing required environment variable in .env: MONGO_URL');
-    process.exit(1);
-}
+const connectionString = process.env.MONGO_URL ?? '';
 
 mongoose.connect(connectionString, {
     useNewUrlParser: true,
@@ -47,4 +42,4 @@ app.use((req: Request, res: Response, next: NextFunction) => {
     })
 })
 
-app.listen(3000, () => console.log('Server running on port 3000!'));
+export default app.listen(3000, () => console.log('Server running on port 3000!'));

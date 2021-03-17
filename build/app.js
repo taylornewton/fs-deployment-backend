@@ -2,6 +2,7 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var morgan_1 = __importDefault(require("morgan"));
@@ -11,11 +12,7 @@ var reviewRoutes_1 = __importDefault(require("./routes/reviewRoutes"));
 var app = express_1.default();
 var cors = require('cors');
 dotenv.config();
-var connectionString = process.env.MONGO_URL;
-if (!connectionString) {
-    console.log('Missing required environment variable in .env: MONGO_URL');
-    process.exit(1);
-}
+var connectionString = (_a = process.env.MONGO_URL) !== null && _a !== void 0 ? _a : '';
 mongoose_1.default.connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -41,4 +38,4 @@ app.use(function (req, res, next) {
         status: 404
     });
 });
-app.listen(3000, function () { return console.log('Server running on port 3000!'); });
+exports.default = app.listen(3000, function () { return console.log('Server running on port 3000!'); });
