@@ -42,3 +42,4 @@ app.use(function (req, res, next) {
     });
 });
 app.listen(3000, function () { return console.log('Server running on port 3000!'); });
+exports.default = app;
